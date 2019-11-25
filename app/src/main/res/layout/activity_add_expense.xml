@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".AddExpense">
+
+    <TextView
+        android:id="@+id/tvclose"
+        android:onClick="tvClose"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#ffffff"
+        android:text="⨯"
+        android:textSize="50dp"
+        />
+
+    <EditText
+        android:id="@+id/etValue"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="20dp"
+        android:hint="Value"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff"
+        android:textSize="20dp"
+        />
+
+    <EditText
+        android:id="@+id/etLabel"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="180dp"
+        android:hint="Label"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff"
+        android:textSize="20dp"
+        />
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="185dp"
+        android:layout_marginLeft="320dp"
+        android:elevation="20dp"
+        android:background="@drawable/button_confirm"
+        android:text="✓"
+        android:textSize="35dp"
+        android:onClick="btnConfirm"
+        />
+
+    <Spinner
+        android:id="@+id/spndropdown"
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="290dp"
+        android:layout_marginLeft="10dp"
+        android:entries="@array/Choose_Category"
+        />
+
+    <TextView
+        android:id="@+id/tvdate"
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="340dp"
+        android:layout_marginLeft="18dp"
+        android:text="Date"
+        android:textSize="16dp"
+        android:textColor="#000000"
+        />
+
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="375dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="375dp"
+        android:layout_marginLeft="13dp"
+        android:hint="Description"
+        android:textColorHint="#000000"
+        android:textSize="16dp"
+        />
+
+</RelativeLayout>
