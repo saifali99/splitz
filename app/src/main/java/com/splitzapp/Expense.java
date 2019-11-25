@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,18 +25,21 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class Expense extends Fragment {
-
+    private static final int REQUEST_CODE_GET_EXPENSE = 1;
     private String value;
     private String label;
     private String description;
 
-//    ListView lst;
-//    List<String> val = Arrays.asList("10", "20", "30");
-//    List<String> lab = Arrays.asList("A", "B", "C");
-//    List<String> desc = Arrays.asList("X", "Y", "Z");
+    ListView lst;
+    List<String> val;
+    List<String> lab;
+    List<String> desc;
 
     public Expense() {
         // Required empty public constructor
+        val = new ArrayList<>();
+        lab = new ArrayList<>();
+        desc = new ArrayList<>();
     }
 
 
@@ -51,7 +55,7 @@ public class Expense extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddExpense.class);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE_GET_EXPENSE);
             }
         });
 
@@ -60,9 +64,6 @@ public class Expense extends Fragment {
             label = getArguments().getString("label");
             description = getArguments().getString("description");
 
-//            val.add(value);
-//            lab.add(label);
-//            desc.add(description);
         }
 
 //        lst = (ListView)view.findViewById(R.id.lvlistview);
@@ -72,4 +73,19 @@ public class Expense extends Fragment {
         return view;
     }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // If the activity result was received from the "Get Car" request
+        if (REQUEST_CODE_GET_EXPENSE == requestCode) {
+            value = data.getStringExtra("value");
+            label = data.getStringExtra("label");
+            description = data.getStringExtra("description");
+            val.add(value);
+            lab.add(label);
+            desc.add(description);
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+
+
+    }
 }

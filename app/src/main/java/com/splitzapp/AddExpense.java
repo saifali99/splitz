@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -71,11 +72,13 @@ public class AddExpense extends AppCompatActivity implements AdapterView.OnItemS
         bundle.putString("description", description.getText().toString());
         Expense expense = new Expense();
         expense.setArguments(bundle);
-//        Intent intent = new Intent(getApplicationContext(), Expense.class);
-//        intent.putExtra("value", value.getText().toString());
-//        intent.putExtra("label", label.getText().toString());
-//        intent.putExtra("description", description.getText().toString());
-//        startActivity(intent);
+
+        Intent i = new Intent();
+
+        i.putExtra("value", value.getText().toString());
+        i.putExtra("label", label.getText().toString());
+        i.putExtra("description", description.getText().toString());
+        setResult(RESULT_OK, i);
         finish();
     }
 
