@@ -3,6 +3,7 @@ package com.splitzapp.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -17,6 +18,9 @@ public class SignupActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private EditText confirmPass;
+    public DatabaseHelper dbhelper;
+    public SQLiteDatabase db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,8 @@ public class SignupActivity extends AppCompatActivity {
         email = (EditText)findViewById(R.id.etEmail);
         password = (EditText)findViewById(R.id.etPassword);
         confirmPass = (EditText)findViewById(R.id.etConfirmPass);
+        dbhelper = new DatabaseHelper(this);
+        db = dbhelper.getWritableDatabase();
     }
 
     public void btnRegister(View view) {
