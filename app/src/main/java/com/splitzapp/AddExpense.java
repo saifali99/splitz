@@ -24,7 +24,7 @@ import java.util.List;
 public class AddExpense extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Spinner spinner;
-    private TextView textView;
+    private Button cancel;
     private TextView dateTimeDisplay;
     private Button addExpense;
     private EditText value;
@@ -46,7 +46,7 @@ public class AddExpense extends AppCompatActivity implements AdapterView.OnItemS
         dateTimeDisplay = (TextView)findViewById(R.id.tvdate);
         dateTimeDisplay.setText(currentDate);
 
-        textView = (TextView)findViewById(R.id.tvclose);
+        cancel = (Button)findViewById(R.id.btnClose);
         addExpense = (Button)findViewById(R.id.btnConfirm);
 
         value = (EditText)findViewById(R.id.etValue);
@@ -54,7 +54,7 @@ public class AddExpense extends AppCompatActivity implements AdapterView.OnItemS
         description = (EditText)findViewById(R.id.etDescription);
     }
 
-//  Dropdown Menu
+    //  Dropdown Menu
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(this, parent.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
@@ -66,12 +66,12 @@ public class AddExpense extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     public void btnConfirm(View view) {
-        Bundle bundle = new Bundle();
-        bundle.putString("value", value.getText().toString());
-        bundle.putString("label", label.getText().toString());
-        bundle.putString("description", description.getText().toString());
-        Expense expense = new Expense();
-        expense.setArguments(bundle);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("value", value.getText().toString());
+//        bundle.putString("label", label.getText().toString());
+//        bundle.putString("description", description.getText().toString());
+//        Expense expense = new Expense();
+//        expense.setArguments(bundle);
 
         Intent i = new Intent();
 
@@ -82,7 +82,7 @@ public class AddExpense extends AppCompatActivity implements AdapterView.OnItemS
         finish();
     }
 
-    public void tvClose(View view) {
+    public void btnClose(View view) {
         finish();
     }
 }

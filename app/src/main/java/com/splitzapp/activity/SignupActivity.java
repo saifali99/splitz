@@ -1,4 +1,4 @@
-package com.splitzapp;
+package com.splitzapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import com.splitzapp.R;
+import com.splitzapp.activity.LoginActivity;
 
 public class SignupActivity extends AppCompatActivity {
 

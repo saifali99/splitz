@@ -1,14 +1,18 @@
-package com.splitzapp;
+package com.splitzapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.icu.text.CaseMap;
 import android.os.Bundle;
-import android.widget.TableLayout;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.tabs.TabLayout;
+import com.splitzapp.R;
+import com.splitzapp.ViewPagerAdapter;
+import com.splitzapp.tab.Expense;
+import com.splitzapp.tab.Group;
+import com.splitzapp.tab.Expense2;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -34,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     private void setViewPager(ViewPager viewPager) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new Expense(), "Expense");
-        viewPagerAdapter.addFragment(new Expense1(), "Expense1");
+        viewPagerAdapter.addFragment(new Group(), "Group");
         viewPagerAdapter.addFragment(new Expense2(), "Expense2");
         viewPager.setAdapter(viewPagerAdapter);
     }

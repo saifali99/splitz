@@ -1,4 +1,4 @@
-package com.splitzapp;
+package com.splitzapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.splitzapp.R;
 
 public class LoginActivity extends AppCompatActivity {
 

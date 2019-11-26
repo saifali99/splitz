@@ -1,8 +1,10 @@
-package com.splitzapp;
+package com.splitzapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.splitzapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
