@@ -9,11 +9,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.splitzapp.AddGroup;
-import com.splitzapp.GroupListView;
+import com.splitzapp.GroupInfo;
+import com.splitzapp.listview.GroupListView;
 import com.splitzapp.R;
 
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ public class Group extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_group, container, false);
 
-        Button addGroup = (Button)view.findViewById(R.id.btnadgroup);
+        Button addGroup = (Button)view.findViewById(R.id.btnaddgroup);
         addGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,9 +49,20 @@ public class Group extends Fragment {
             }
         });
 
+
+
         ListView listView = view.findViewById(R.id.lvlistview2);
         groupListView = new GroupListView(getActivity(), groupName);
         listView.setAdapter(groupListView);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), GroupInfo.class);
+                intent.putExtra("groupName", groupName.get(position));
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
@@ -59,7 +72,7 @@ public class Group extends Fragment {
         if (REQUEST_CODE_GET_EXPENSE == requestCode && data != null) {
             String groupname;
 
-            groupname = data.getStringExtra("groupname");
+            groupname = data.getStringExtra("groupName");
             this.groupName.add(groupname);
 
             groupListView.notifyDataSetChanged();

@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.splitzapp.AddExpense;
-import com.splitzapp.ExpenseListView;
+import com.splitzapp.listview.ExpenseListView;
 import com.splitzapp.R;
 
 import java.util.ArrayList;

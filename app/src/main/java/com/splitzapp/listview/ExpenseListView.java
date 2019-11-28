@@ -1,4 +1,4 @@
-package com.splitzapp;
+package com.splitzapp.listview;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.splitzapp.R;
 
 import java.util.List;
 

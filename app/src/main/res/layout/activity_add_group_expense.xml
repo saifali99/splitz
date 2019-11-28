@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".AddGroup">
+    tools:context=".AddGroupExpense">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Group"
+        android:text="Add Expense"
         android:textColor="#ffffff"
         android:textSize="30dp"
         android:layout_centerHorizontal="true"
@@ -18,48 +18,39 @@
         />
 
     <EditText
-        android:id="@+id/etGroupName"
-        android:layout_width="380dp"
+        android:id="@+id/etAmount"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:layout_marginLeft="15dp"
-        android:hint="Group Name"
-        android:textSize="18dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="13dp"
+        android:hint="Amount"
+        android:textColor="#000000"
         android:textColorHint="#000000"
-    />
-
-    <EditText
-        android:id="@+id/etpersonname"
-        android:layout_width="330dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
-        android:layout_marginLeft="15dp"
-        android:hint="Person Name"
-        android:textSize="18dp"
-        android:textColorHint="#000000"
+        android:textSize="16dp"
         />
 
-    <Button
-        android:id="@+id/btnAddUsers"
-        android:onClick="btnAddUsers"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:text="+"
-        android:layout_marginTop="160dp"
-        android:layout_marginLeft="350dp"
-        android:background="@drawable/button_confirm"
+    <EditText
+        android:id="@+id/etGroupExpLabel"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:layout_marginLeft="13dp"
+        android:hint="Label"
+        android:textColor="#000000"
+        android:textColorHint="#000000"
+        android:textSize="16dp"
         />
 
     <ListView
-        android:id="@+id/lvlistview3"
+        android:id="@+id/lvlistview4"
         android:layout_width="match_parent"
         android:layout_height="330dp"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="230dp"
         />
 
     <Button
-        android:id="@+id/btnConfirmGroup"
-        android:onClick="btnConfirmGroup"
+        android:id="@+id/btnConfirmGroupExpense"
+        android:onClick="btnConfirmGroupExpense"
         android:layout_width="170dp"
         android:layout_height="50dp"
         android:layout_marginTop="580dp"
@@ -72,8 +63,8 @@
         />
 
     <Button
-        android:id="@+id/btnCloseGroup"
-        android:onClick="btnCloseGroup"
+        android:id="@+id/btnCloseGroupExpense"
+        android:onClick="btnCloseGroupExpense"
         android:layout_width="170dp"
         android:layout_height="50dp"
         android:layout_marginTop="580dp"
@@ -84,7 +75,5 @@
         android:text="Cancel"
         android:textSize="15dp"
         />
-
-
 
 </RelativeLayout>

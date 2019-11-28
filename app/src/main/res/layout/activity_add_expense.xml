@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
         android:layout_marginLeft="13dp"
-        android:hint="Value"
+        android:hint="Amount"
         android:textColor="#000000"
         android:textColorHint="#000000"
         android:textSize="16dp"

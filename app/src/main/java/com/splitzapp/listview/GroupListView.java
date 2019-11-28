@@ -1,5 +1,5 @@
 
-package com.splitzapp;
+package com.splitzapp.listview;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.splitzapp.R;
+
 import java.util.List;
 
 public class GroupListView extends ArrayAdapter<String> {
@@ -19,7 +21,7 @@ public class GroupListView extends ArrayAdapter<String> {
     private Context context;
 
     public GroupListView(Context context, List<String> group) {
-        super(context, R.layout.expenselistview_layout, group);
+        super(context, R.layout.grouplistview_layout, group);
 
         this.context = context;
         this.groupname = group;
@@ -32,7 +34,7 @@ public class GroupListView extends ArrayAdapter<String> {
         ViewHolder viewHolder = null;
         if (view == null) {
             LayoutInflater layoutInflater = ((Activity) getContext()).getLayoutInflater();
-            view = layoutInflater.inflate(R.layout.expenselistview_layout, null, true);
+            view = layoutInflater.inflate(R.layout.grouplistview_layout, null, true);
             viewHolder = new ViewHolder(view);
             view.setTag(viewHolder);
         }
@@ -40,16 +42,16 @@ public class GroupListView extends ArrayAdapter<String> {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        viewHolder.et1.setText(groupname.get(position));
+        viewHolder.tv1.setText(groupname.get(position));
 
         return view;
     }
 
     class ViewHolder {
-        TextView et1;
+        TextView tv1;
 
         ViewHolder(View v) {
-            et1 = (TextView) v.findViewById(R.id.entry1);
+            tv1 = (TextView) v.findViewById(R.id.tvgroup);
         }
     }
 }
