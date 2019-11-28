@@ -40,6 +40,10 @@ public class SignupActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         intent.putExtra("rUsername", username.getText().toString());
         intent.putExtra("rPassword", password.getText().toString());
+
+        String[] args = {username.getText().toString(), password.getText().toString()};
+        db.execSQL("INSERT INTO users(username, password) VALUES (?, ?)", args);
+
         startActivity(intent);
     }
 }
