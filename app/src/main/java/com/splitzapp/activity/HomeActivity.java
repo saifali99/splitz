@@ -1,6 +1,7 @@
 package com.splitzapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -37,9 +38,18 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setViewPager(ViewPager viewPager) {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new Expense(), "Expense");
-        viewPagerAdapter.addFragment(new Group(), "Group");
-        viewPagerAdapter.addFragment(new Expense2(), "Expense2");
+        Fragment expense = new Expense();
+        Fragment group = new Group();
+        Fragment expense2 = new Expense2();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("userId", getIntent().getStringExtra("userId"));
+        group.setArguments(bundle);
+        expense.setArguments(bundle);
+
+        viewPagerAdapter.addFragment(expense, "Expense");
+        viewPagerAdapter.addFragment(group, "Group");
+        viewPagerAdapter.addFragment(expense2, "Expense2");
         viewPager.setAdapter(viewPagerAdapter);
     }
 }

@@ -45,8 +45,12 @@ public class LoginActivity extends AppCompatActivity {
         cursor.moveToFirst();
 
         //if(username.equals(vUsername.getText().toString()) && password.equals(vPassword.getText().toString())) {
-        if (!cursor.isAfterLast())
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+        if (!cursor.isAfterLast()) {
+            cursor.moveToFirst();
+            Intent i = new Intent(getApplicationContext(), HomeActivity.class);
+            i.putExtra("userId", cursor.getString(0));
+            startActivity(i);
+        }
     //    }
     }
 

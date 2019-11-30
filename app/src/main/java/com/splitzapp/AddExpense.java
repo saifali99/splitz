@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.splitzapp.activity.DatabaseHelper;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,7 +33,8 @@ public class AddExpense extends AppCompatActivity implements AdapterView.OnItemS
     private EditText value;
     private EditText label;
     private EditText description;
-
+    public DatabaseHelper dbhelper;
+    public SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,10 @@ public class AddExpense extends AppCompatActivity implements AdapterView.OnItemS
         value = (EditText)findViewById(R.id.etValue);
         label = (EditText)findViewById(R.id.etLabel);
         description = (EditText)findViewById(R.id.etDescription);
+
+        dbhelper = new DatabaseHelper(this);
+        db = dbhelper.getWritableDatabase();
+
     }
 
     //  Dropdown Menu
@@ -66,8 +74,9 @@ public class AddExpense extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     public void btnConfirm(View view) {
+        db.execSQL("INSERT INTO EXPENSES(uid, amount, label, description, category) values (?, ?, ?, ?, ?)",
+                new String[]{ getIntent().getStringExtra("userId"), value.getText().toString(), label.getText().toString(), description.getText().toString(), "none"});
         Intent i = new Intent();
-
         i.putExtra("value", value.getText().toString());
         i.putExtra("label", label.getText().toString());
         i.putExtra("description", description.getText().toString());

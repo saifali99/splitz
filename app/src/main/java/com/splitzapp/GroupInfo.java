@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ public class GroupInfo extends AppCompatActivity {
     private String groupName;
     private TextView tvGroupName;
     private Button addExpense;
+    private String groupId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class GroupInfo extends AppCompatActivity {
         tvGroupName = findViewById(R.id.tvTitle);
 
         groupName = getIntent().getStringExtra("groupName");
+        groupId = getIntent().getStringExtra("groupId");
         tvGroupName.setText(groupName);
 
         addExpense = findViewById(R.id.btnaddgroupexpense);
@@ -37,6 +40,7 @@ public class GroupInfo extends AppCompatActivity {
     public void btnAddGroupExpense(View view) {
         Intent i = new Intent(getApplicationContext(), AddGroupExpense.class);
         i.putExtra("groupName", groupName);
+        i.putExtra("groupId", groupId);
         startActivity(i);
     }
 
