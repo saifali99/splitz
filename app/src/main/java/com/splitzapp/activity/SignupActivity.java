@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.splitzapp.R;
 import com.splitzapp.activity.LoginActivity;
@@ -29,7 +32,9 @@ public class SignupActivity extends AppCompatActivity {
 
         fullname = (EditText)findViewById(R.id.etFullname);
         username = (EditText)findViewById(R.id.etUsername);
+
         email = (EditText)findViewById(R.id.etEmail);
+
         password = (EditText)findViewById(R.id.etPassword);
         confirmPass = (EditText)findViewById(R.id.etConfirmPass);
         dbhelper = new DatabaseHelper(this);
@@ -38,12 +43,19 @@ public class SignupActivity extends AppCompatActivity {
 
     public void btnRegister(View view) {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-        intent.putExtra("rUsername", username.getText().toString());
-        intent.putExtra("rPassword", password.getText().toString());
 
-        String[] args = {username.getText().toString(), password.getText().toString()};
-        db.execSQL("INSERT INTO users(username, password) VALUES (?, ?)", args);
+//        if(!isEmail(email)) {
+//            email.setError("Invalid Email");
 
-        startActivity(intent);
+            String[] args = {username.getText().toString(), password.getText().toString()};
+            db.execSQL("INSERT INTO users(username, password) VALUES (?, ?)", args);
+
+            startActivity(intent);
+//        }
     }
+
+/*    boolean isEmail(EditText text) {
+        CharSequence email = text.getText().toString();
+        return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
+    }*/
 }

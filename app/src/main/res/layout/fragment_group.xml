@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="475dp"
         android:layout_marginLeft="330dp"
+        android:elevation="10dp"
         android:text="+"
         android:textSize="25dp"
         android:textColor="#ffffff"
@@ -22,6 +23,9 @@
         android:id="@+id/lvlistview2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fontFamily="sans-serif-light"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="5.0sp"
         />
 
 </RelativeLayout>

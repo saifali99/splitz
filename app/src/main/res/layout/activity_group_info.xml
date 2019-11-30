@@ -15,6 +15,7 @@
         android:textSize="30dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-light"
         />
 
     <Button

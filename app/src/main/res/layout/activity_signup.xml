@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
     android:orientation="vertical"
+    android:background="@drawable/gradient_background"
     tools:context=".activity.SignupActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textColor="#ffffff"
+        android:textSize="30dp"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif-light"
+        />
 
     <EditText
         android:id="@+id/etFullname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="130dp"
         android:ems="10"
         android:hint="Full Name"
         android:inputType="text"
@@ -22,6 +33,7 @@
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="text"
@@ -31,15 +43,17 @@
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="230dp"
         android:ems="10"
         android:hint="Email"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:textSize="20sp" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="280dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="text"
@@ -49,6 +63,7 @@
         android:id="@+id/etConfirmPass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="330dp"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="text"
@@ -58,11 +73,13 @@
         android:id="@+id/btnRegisterUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="450dp"
+        android:elevation="10dp"
         android:background="@drawable/button_rounded"
         android:onClick="btnRegister"
         android:text="Register"
         android:textColor="@color/buttonText"
+        android:fontFamily="sans-serif-light"
         android:textSize="20sp" />
 
-</LinearLayout>
+</RelativeLayout>
