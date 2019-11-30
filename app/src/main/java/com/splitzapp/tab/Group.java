@@ -60,6 +60,7 @@ public class Group extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), GroupInfo.class);
                 intent.putExtra("groupName", groupName.get(position));
+
                 startActivity(intent);
             }
         });
