@@ -24,13 +24,11 @@ public class Expense extends Fragment {
     private static final int REQUEST_CODE_GET_EXPENSE = 1;
     private List<String> value;
     private List<String> label;
-    private List<String> desc;
     private ExpenseListView expenseListView;
 
     public Expense() {
         value = new ArrayList<>(Arrays.asList("10","20","30"));
-        label = new ArrayList<>(Arrays.asList("A1","A2","A3"));
-        desc = new ArrayList<>(Arrays.asList("B1","B2","B3"));
+        label = new ArrayList<>(Arrays.asList("Label1","Label2","Label3"));
     }
 
     @Override
@@ -49,7 +47,7 @@ public class Expense extends Fragment {
         });
 
         ListView listView = view.findViewById(R.id.lvlistview1);
-        expenseListView = new ExpenseListView(getActivity(), value, label, desc);
+        expenseListView = new ExpenseListView(getActivity(), value, label);
         listView.setAdapter(expenseListView);
 
         return view;
@@ -65,7 +63,6 @@ public class Expense extends Fragment {
             description = data.getStringExtra("description");
             this.value.add(value);
             this.label.add(label);
-            desc.add(description);
 
             expenseListView.notifyDataSetChanged();
         }

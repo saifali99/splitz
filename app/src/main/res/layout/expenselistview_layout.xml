@@ -13,23 +13,19 @@
 
         <TextView
             android:id="@+id/entry1"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="270dp"
             android:textSize="20dp"
+            android:text="Amount"
+            android:gravity="end"
             />
         <TextView
             android:id="@+id/entry2"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:textSize="20dp"
-            />
-        <TextView
-            android:id="@+id/entry3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:textSize="20dp"
+            android:text="Label"
             />
 
     </RelativeLayout>

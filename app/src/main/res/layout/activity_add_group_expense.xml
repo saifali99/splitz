@@ -15,6 +15,7 @@
         android:textSize="30dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-light"
         />
 
     <EditText
@@ -27,6 +28,7 @@
         android:textColor="#000000"
         android:textColorHint="#000000"
         android:textSize="16dp"
+        android:inputType="number"
         />
 
     <EditText
@@ -44,17 +46,17 @@
     <ListView
         android:id="@+id/lvlistview4"
         android:layout_width="match_parent"
-        android:layout_height="330dp"
+        android:layout_height="260dp"
         android:layout_marginTop="230dp"
         />
 
     <Button
         android:id="@+id/btnConfirmGroupExpense"
         android:onClick="btnConfirmGroupExpense"
-        android:layout_width="170dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginTop="580dp"
-        android:layout_marginLeft="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="520dp"
         android:elevation="20dp"
         android:textColor="#ffffff"
         android:background="@drawable/button_rounded"
@@ -65,13 +67,13 @@
     <Button
         android:id="@+id/btnCloseGroupExpense"
         android:onClick="btnCloseGroupExpense"
-        android:layout_width="170dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="580dp"
-        android:layout_marginLeft="220dp"
         android:elevation="20dp"
-        android:textColor="#ffffff"
-        android:background="@drawable/button_rounded"
+        android:textColor="#186ECF"
+        android:background="@drawable/button_hollow"
         android:text="Cancel"
         android:textSize="15dp"
         />

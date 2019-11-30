@@ -18,16 +18,14 @@ import java.util.List;
 public class ExpenseListView extends ArrayAdapter<String> {
     private List<String> val;
     private List<String> lab;
-    private List<String> desc;
     private Context context;
 
-    public ExpenseListView(Context context, List<String> value, List<String> label, List<String> description) {
+    public ExpenseListView(Context context, List<String> value, List<String> label) {
         super(context, R.layout.expenselistview_layout, value);
 
         this.context = context;
         this.val = value;
         this.lab = label;
-        this.desc = description;
     }
 
     @NonNull
@@ -47,7 +45,6 @@ public class ExpenseListView extends ArrayAdapter<String> {
 
         viewHolder.et1.setText(val.get(position));
         viewHolder.et2.setText(lab.get(position));
-        viewHolder.et3.setText(desc.get(position));
 
         return view;
     }
@@ -60,7 +57,6 @@ public class ExpenseListView extends ArrayAdapter<String> {
         ViewHolder(View v) {
             et1 = (TextView) v.findViewById(R.id.entry1);
             et2 = (TextView) v.findViewById(R.id.entry2);
-            et3 = (TextView) v.findViewById(R.id.entry3);
         }
     }
 }

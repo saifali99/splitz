@@ -50,6 +50,8 @@ public class AddGroup extends AppCompatActivity {
 
     public void btnAddUsers(View view) {
         String personName = etPersonname.getText().toString();
+        //save the personNames that user add in data with there groupname as etGroupname
+
         if (!personName.isEmpty()) {
             this.personName.add(personName);
 

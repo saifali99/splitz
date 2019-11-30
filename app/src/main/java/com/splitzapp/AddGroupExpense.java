@@ -39,6 +39,8 @@ public class AddGroupExpense extends AppCompatActivity {
         confirm = findViewById(R.id.btnConfirmGroupExpense);
         cancel = findViewById(R.id.btnCloseGroupExpense);
 
+        //I need the username here in user list
+
         ListView listView = findViewById(R.id.lvlistview4);
         groupExpenseListView = new GroupExpenseListView(this, user, userAmount);
         listView.setAdapter(groupExpenseListView);

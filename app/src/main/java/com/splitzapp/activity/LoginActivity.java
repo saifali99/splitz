@@ -39,9 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void btnLogin(View view) {
-        String username = getIntent().getStringExtra("rUsername");
-        String password = getIntent().getStringExtra("rPassword");
-
         Cursor cursor;
         String m_argv[] = {vUsername.getText().toString(), vPassword.getText().toString()};
         cursor = db.rawQuery("SELECT * FROM users WHERE username = ? AND password = ?", m_argv);

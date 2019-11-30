@@ -15,6 +15,7 @@
         android:textSize="30dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:fontFamily="sans-serif-light"
         />
 
     <EditText
@@ -44,6 +45,7 @@
         android:onClick="btnAddUsers"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:elevation="10dp"
         android:text="+"
         android:layout_marginTop="160dp"
         android:layout_marginLeft="350dp"
@@ -52,18 +54,19 @@
 
     <ListView
         android:id="@+id/lvlistview3"
-        android:layout_width="match_parent"
-        android:layout_height="330dp"
+        android:layout_width="380dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="260dp"
         android:layout_marginTop="220dp"
         />
 
     <Button
         android:id="@+id/btnConfirmGroup"
         android:onClick="btnConfirmGroup"
-        android:layout_width="170dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
-        android:layout_marginTop="580dp"
-        android:layout_marginLeft="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="520dp"
         android:elevation="20dp"
         android:textColor="#ffffff"
         android:background="@drawable/button_rounded"
@@ -74,17 +77,15 @@
     <Button
         android:id="@+id/btnCloseGroup"
         android:onClick="btnCloseGroup"
-        android:layout_width="170dp"
+        android:layout_width="350dp"
         android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="580dp"
-        android:layout_marginLeft="220dp"
         android:elevation="20dp"
-        android:textColor="#ffffff"
-        android:background="@drawable/button_rounded"
+        android:textColor="#186ECF"
+        android:background="@drawable/button_hollow"
         android:text="Cancel"
         android:textSize="15dp"
         />
-
-
 
 </RelativeLayout>

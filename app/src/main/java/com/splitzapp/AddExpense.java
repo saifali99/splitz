@@ -66,13 +66,6 @@ public class AddExpense extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     public void btnConfirm(View view) {
-//        Bundle bundle = new Bundle();
-//        bundle.putString("value", value.getText().toString());
-//        bundle.putString("label", label.getText().toString());
-//        bundle.putString("description", description.getText().toString());
-//        Expense expense = new Expense();
-//        expense.setArguments(bundle);
-
         Intent i = new Intent();
 
         i.putExtra("value", value.getText().toString());
