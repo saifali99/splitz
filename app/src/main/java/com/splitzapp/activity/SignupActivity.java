@@ -51,6 +51,7 @@ public class SignupActivity extends AppCompatActivity {
             db.execSQL("INSERT INTO users(username, password) VALUES (?, ?)", args);
 
             startActivity(intent);
+            Toast.makeText(getApplicationContext(),"Registered",Toast.LENGTH_SHORT).show();
 //        }
     }
 
