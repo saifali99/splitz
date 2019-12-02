@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.splitzapp.R;
 
@@ -50,6 +51,9 @@ public class LoginActivity extends AppCompatActivity {
             Intent i = new Intent(getApplicationContext(), HomeActivity.class);
             i.putExtra("userId", cursor.getString(0));
             startActivity(i);
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"Username or password incorrect",Toast.LENGTH_SHORT).show();
         }
     //    }
     }
