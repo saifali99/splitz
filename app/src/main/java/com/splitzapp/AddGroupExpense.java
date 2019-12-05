@@ -60,8 +60,11 @@ public class AddGroupExpense extends AppCompatActivity {
     }
 
     public void btnAddInvolvedUser(View view) {
-        this.involvedUser.add(user.getSelectedItem().toString());
-        this.involvedUserAmount.add(userAmount.getText().toString());
+        Cursor res = db.rawQuery("SELECT * FROM USERS WHERE username = ?", new String[]{user.getSelectedItem().toString()});
+        if(!res.isAfterLast() ) {
+            this.involvedUser.add(user.getSelectedItem().toString());
+            this.involvedUserAmount.add(userAmount.getText().toString());
+        }
     }
 
     public void btnConfirmGroupExpense(View view) {
@@ -70,8 +73,15 @@ public class AddGroupExpense extends AppCompatActivity {
         // Need to look at it
         // Need to add label in group expense
         // No table for saving expenses paid by each user
-        db.execSQL("INSERT INTO groupExpense(gid, expense) values (?, ?)",
-                new String[]{groupId, amount.getText().toString()});
+        db.execSQL("INSERT INTO groupExpense(gid, expenseLabel) values (?, ?)",
+                new String[]{groupId, label.getText().toString()} );
+        Cursor res0 = db.rawQuery("SELECT * FROM groups", new String[]{});
+        res0.moveToLast();
+        for (int i = 0; i < involvedUser.size(); i++) {
+            Cursor res1 = db.rawQuery("Select * from users where username = ?", new String[]{involvedUser.get(i)});
+            res1.moveToFirst();
+            db.execSQL("INSERT INTO groupUserExpense(eid, gid, uid, amount) values (?, ?, ?, ?)", new String[]{res0.getString(0), groupId, res1.getString(0), involvedUserAmount.get(i)});
+        }
 
         /*Intent i = new Intent();
         i.putExtra("label", label.getText().toString());
