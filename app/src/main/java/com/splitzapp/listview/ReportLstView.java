@@ -44,8 +44,8 @@ public class ReportLstView extends ArrayAdapter<String> {
             viewHolder = (ViewHolder) view.getTag();
         }
 
-        viewHolder.tv1.setText(value.get(position));
-        viewHolder.tv2.setText(cat.get(position));
+        viewHolder.tv1.setText(cat.get(position));
+        viewHolder.tv2.setText(value.get(position));
 
         return view;
     }

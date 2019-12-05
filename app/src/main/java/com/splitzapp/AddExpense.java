@@ -1,15 +1,16 @@
 package com.splitzapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.splitzapp.activity.DatabaseHelper;
 
@@ -19,17 +20,22 @@ import java.util.Calendar;
 public class AddExpense extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Spinner spinner;
-
     private EditText value;
     private EditText label;
     private EditText description;
-    public DatabaseHelper dbhelper;
-    public SQLiteDatabase db;
+    private TextView header;
+    private DatabaseHelper dbhelper;
+    private SQLiteDatabase db;
+    private String mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_expense);
+
+        mode = getIntent().getStringExtra("mode");
+
+        header = findViewById(R.id.tvAddExpenseHeader);
 
         spinner = findViewById(R.id.spndropdown);
         spinner.setOnItemSelectedListener(this);
@@ -46,6 +52,16 @@ public class AddExpense extends AppCompatActivity implements AdapterView.OnItemS
 
         dbhelper = new DatabaseHelper(this);
         db = dbhelper.getWritableDatabase();
+
+        if(mode.equals("ADD")) {
+            header.setText("Add Expense");
+        }
+        else if(mode.equals("EDIT")) {
+            header.setText("Edit Expense");
+            value.setText(getIntent().getStringExtra("value"));
+            label.setText(getIntent().getStringExtra("label"));
+            spinner.setSelection(((ArrayAdapter<String>)spinner.getAdapter()).getPosition(getIntent().getStringExtra("category")));
+        }
     }
 
     //  Dropdown Menu
@@ -60,18 +76,24 @@ public class AddExpense extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     public void btnConfirm(View view) {
-        db.execSQL("INSERT INTO EXPENSES(uid, amount, label, description, category) values (?, ?, ?, ?, ?)",
-                new String[]{ getIntent().getStringExtra("userId"),
-                        value.getText().toString(),
-                        label.getText().toString(),
-                        description.getText().toString(),
-                        spinner.getSelectedItem().toString()});
-
         Intent i = new Intent();
+        if(mode.equals("ADD")) {
+            db.execSQL("INSERT INTO EXPENSES(uid, amount, label, description, category) values (?, ?, ?, ?, ?)",
+                    new String[]{getIntent().getStringExtra("userId"),
+                            value.getText().toString(),
+                            label.getText().toString(),
+                            description.getText().toString(),
+                            spinner.getSelectedItem().toString()});
+        }
+        else if(mode.equals("EDIT")) {
+            i.putExtra("position", getIntent().getStringExtra("position"));
+            //Please add update query and save the value on the same location
+        }
         i.putExtra("value", value.getText().toString());
         i.putExtra("label", label.getText().toString());
         i.putExtra("description", description.getText().toString());
         i.putExtra("category", spinner.getSelectedItem().toString());
+
         setResult(RESULT_OK, i);
         finish();
     }

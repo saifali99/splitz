@@ -8,9 +8,9 @@
     tools:context=".AddExpense">
 
     <TextView
+        android:id="@+id/tvAddExpenseHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Expense"
         android:textColor="#ffffff"
         android:textSize="30dp"
         android:layout_centerHorizontal="true"

@@ -4,22 +4,21 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.fragment.app.Fragment;
+
 import com.splitzapp.AddExpense;
+import com.splitzapp.R;
 import com.splitzapp.activity.DatabaseHelper;
 import com.splitzapp.listview.ExpenseListView;
-import com.splitzapp.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Expense extends Fragment {
@@ -30,8 +29,10 @@ public class Expense extends Fragment {
     private List<String> categoryList;
     private ExpenseListView expenseListView;
 
-    public DatabaseHelper dbhelper;
-    public SQLiteDatabase db;
+    private DatabaseHelper dbhelper;
+    private SQLiteDatabase db;
+
+    private String mode = "ADD";
 
     public Expense() {
         valueList = new ArrayList<>();
@@ -40,7 +41,7 @@ public class Expense extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         dbhelper = new DatabaseHelper(getContext());
@@ -54,6 +55,8 @@ public class Expense extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddExpense.class);
                 intent.putExtra("userId", getArguments().getString("userId", "null"));
+                intent.putExtra("mode", "ADD");
+                mode = "ADD";
                 startActivityForResult(intent, REQUEST_CODE_GET_EXPENSE);
             }
         });
@@ -73,6 +76,20 @@ public class Expense extends Fragment {
         expenseListView = new ExpenseListView(getActivity(), valueList, labelList, categoryList);
         listView.setAdapter(expenseListView);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), AddExpense.class);
+                intent.putExtra("mode", "EDIT");
+                intent.putExtra("value", valueList.get(position));
+                intent.putExtra("label", labelList.get(position));
+                intent.putExtra("category", categoryList.get(position));
+                intent.putExtra("position", String.valueOf(position));
+                mode = "EDIT";
+                startActivityForResult(intent, REQUEST_CODE_GET_EXPENSE);
+            }
+        });
+
         return view;
     }
 
@@ -86,9 +103,17 @@ public class Expense extends Fragment {
             category = data.getStringExtra("category");
 //            description = data.getStringExtra("description");
 
-            this.valueList.add(value);
-            this.labelList.add(label);
-            this.categoryList.add(category);
+            if(mode.equals("ADD")) {
+                this.valueList.add(value);
+                this.labelList.add(label);
+                this.categoryList.add(category);
+            }
+            else if(mode.equals("EDIT")) {
+                int position = Integer.valueOf(data.getStringExtra("position"));
+                valueList.set(position, value);
+                labelList.set(position, label);
+                categoryList.set(position, category);
+            }
 
             expenseListView.notifyDataSetChanged();
         }
