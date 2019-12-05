@@ -1,6 +1,7 @@
 package com.splitzapp;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +19,7 @@ import java.text.DateFormat;
 import java.util.Calendar;
 
 public class AddExpense extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
-
+    private String eId;
     private Spinner spinner;
     private EditText value;
     private EditText label;
@@ -84,10 +85,13 @@ public class AddExpense extends AppCompatActivity implements AdapterView.OnItemS
                             label.getText().toString(),
                             description.getText().toString(),
                             spinner.getSelectedItem().toString()});
+            eId = db.rawQuery("Select eid from expenses", new String[]{}).getString(0);
         }
         else if(mode.equals("EDIT")) {
             i.putExtra("position", getIntent().getStringExtra("position"));
-            //Please add update query and save the value on the same location
+            eId = getIntent().getStringExtra("id");
+            db.execSQL("UPDATE expenses SET amount = ?, label = ?, category = ?, description = ? where eid = ?",
+                    new String[]{value.getText().toString(), label.getText().toString(), spinner.getSelectedItem().toString(), description.getText().toString(), eId});
         }
         i.putExtra("value", value.getText().toString());
         i.putExtra("label", label.getText().toString());

@@ -24,6 +24,7 @@ import java.util.List;
 public class Expense extends Fragment {
 
     private static final int REQUEST_CODE_GET_EXPENSE = 1;
+    private List<String> idList;
     private List<String> valueList;
     private List<String> labelList;
     private List<String> categoryList;
@@ -35,6 +36,7 @@ public class Expense extends Fragment {
     private String mode = "ADD";
 
     public Expense() {
+        idList = new ArrayList<>();
         valueList = new ArrayList<>();
         labelList = new ArrayList<>();
         categoryList = new ArrayList<>();
@@ -65,11 +67,12 @@ public class Expense extends Fragment {
         valueList.clear();
         categoryList.clear();
 
-        Cursor cursor = db.rawQuery("SELECT e.amount, e.label, e.category FROM expenses e WHERE e.uid = ?", new String[]{ getArguments().getString("userId")});
+        Cursor cursor = db.rawQuery("SELECT e.eid, e.amount, e.label, e.category FROM expenses e WHERE e.uid = ?", new String[]{ getArguments().getString("userId")});
         while (cursor.moveToNext()) {
-            this.valueList.add(cursor.getString(0));
-            this.labelList.add(cursor.getString(1));
-            this.categoryList.add(cursor.getString(2));
+            this.idList.add(cursor.getString(0));
+            this.valueList.add(cursor.getString(1));
+            this.labelList.add(cursor.getString(2));
+            this.categoryList.add(cursor.getString(3));
         }
 
         ListView listView = view.findViewById(R.id.lvlistview1);
@@ -81,6 +84,7 @@ public class Expense extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(), AddExpense.class);
                 intent.putExtra("mode", "EDIT");
+                intent.putExtra("id", idList.get(position));
                 intent.putExtra("value", valueList.get(position));
                 intent.putExtra("label", labelList.get(position));
                 intent.putExtra("category", categoryList.get(position));
@@ -96,20 +100,23 @@ public class Expense extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (REQUEST_CODE_GET_EXPENSE == requestCode && data != null) {
-            String value, label, description, category;
+            String value, label, description, category, id;
 
+            id = data.getStringExtra("id");
             value = data.getStringExtra("value");
             label = data.getStringExtra("label");
             category = data.getStringExtra("category");
 //            description = data.getStringExtra("description");
 
             if(mode.equals("ADD")) {
+                this.idList.add(id);
                 this.valueList.add(value);
                 this.labelList.add(label);
                 this.categoryList.add(category);
             }
             else if(mode.equals("EDIT")) {
                 int position = Integer.valueOf(data.getStringExtra("position"));
+                idList.set(position, id);
                 valueList.set(position, value);
                 labelList.set(position, label);
                 categoryList.set(position, category);
