@@ -5,24 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.splitzapp.R;
 
 import java.util.List;
 
 public class GroupExpenseListView extends ArrayAdapter<String> {
-    List<String> user;
-    List<String> userAmount;
+
     private Context context;
+    private List<String> involvedUser;
+    private List<String> involvedUserAmount;
 
-    public  GroupExpenseListView(Context context, List<String> u, List<String> a) {
-        super(context, R.layout.groupexpenselistview_layout, u);
-
+    public GroupExpenseListView(Context context, List<String> user, List<String> amount) {
+        super(context, R.layout.groupexpenselistview_layout, user);
         this.context = context;
-        this.user = u;
-        this.userAmount = a;
+        this.involvedUser = user;
+        this.involvedUserAmount = amount;
     }
 
     @Override
@@ -33,19 +32,19 @@ public class GroupExpenseListView extends ArrayAdapter<String> {
         ViewHolder viewHolder = new GroupExpenseListView.ViewHolder(view);
         view.setTag(viewHolder);
 
-        viewHolder.cb1.setText(user.get(position));
+        viewHolder.tv1.setText(involvedUser.get(position));
+        viewHolder.tv2.setText(involvedUserAmount.get(position));
 
         return view;
     }
 
     class ViewHolder {
-        CheckBox cb1;
-        EditText et1;
+        TextView tv1;
+        TextView tv2;
 
         ViewHolder(View v) {
-            cb1 = v.findViewById(R.id.cbUser);
-            et1 = v.findViewById(R.id.etExpenseAmount);
+            tv1 = v.findViewById(R.id.tvInvolvedUser);
+            tv2 = v.findViewById(R.id.tvInvolvedUserAmount);
         }
     }
-
 }

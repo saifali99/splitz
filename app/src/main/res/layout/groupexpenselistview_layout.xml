@@ -11,18 +11,22 @@
         android:padding="15dp"
         >
 
-        <CheckBox
-            android:id="@+id/cbUser"
+        <TextView
+            android:id="@+id/tvInvolvedUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Username"
+            android:textSize="20dp"
             />
 
-        <EditText
-            android:id="@+id/etExpenseAmount"
-            android:layout_width="100dp"
+        <TextView
+            android:id="@+id/tvInvolvedUserAmount"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="300dp"
-            android:textSize="15dp"
+            android:layout_marginLeft="250dp"
+            android:text="Paid"
+            android:textSize="20dp"
             />
 
     </RelativeLayout>

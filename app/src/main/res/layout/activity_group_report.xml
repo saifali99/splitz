@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".GroupInfo">
+    tools:context=".GroupReport">
 
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/tvReportGroupName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#ffffff"
@@ -18,39 +18,37 @@
         android:fontFamily="sans-serif-light"
         />
 
-    <Button
-        android:id="@+id/btnaddgroupexpense"
-        android:onClick="btnAddGroupExpense"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="580dp"
-        android:layout_marginLeft="330dp"
-        android:text="+"
-        android:textSize="25dp"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Report"
+        android:textColor="#000000"
+        android:textSize="30dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="20dp"
         android:fontFamily="sans-serif-light"
-        android:textColor="#ffffff"
-        android:background="@drawable/button_rounded"
         />
 
     <ListView
-        android:id="@+id/lvGroupExpense"
-        android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:layout_marginTop="100dp"
+        android:id="@+id/lvlistview6"
+        android:layout_width="380dp"
+        android:layout_height="380dp"
+        android:layout_marginTop="180dp"
+        android:layout_centerHorizontal="true"
         />
 
     <Button
-        android:id="@+id/btnGenerateReport"
-        android:onClick="BtnGenerateReport"
-        android:layout_width="300dp"
+        android:id="@+id/btnCloseReport"
+        android:onClick="btnCloseReport"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_rounded"
         android:layout_marginTop="580dp"
-        android:layout_marginLeft="20dp"
-        android:text="Generate Report"
+        android:layout_centerHorizontal="true"
+        android:text="Close"
+        android:textColor="#ffffff"
         android:textSize="20dp"
         android:fontFamily="sans-serif-light"
-        android:textColor="#ffffff"
+        android:background="@drawable/button_rounded"
         />
 
 </RelativeLayout>

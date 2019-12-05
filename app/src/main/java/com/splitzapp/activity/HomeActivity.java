@@ -13,7 +13,7 @@ import com.splitzapp.R;
 import com.splitzapp.ViewPagerAdapter;
 import com.splitzapp.tab.Expense;
 import com.splitzapp.tab.Group;
-import com.splitzapp.tab.Expense2;
+import com.splitzapp.tab.Report;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -40,16 +40,17 @@ public class HomeActivity extends AppCompatActivity {
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         Fragment expense = new Expense();
         Fragment group = new Group();
-        Fragment expense2 = new Expense2();
+        Fragment report = new Report();
 
         Bundle bundle = new Bundle();
         bundle.putString("userId", getIntent().getStringExtra("userId"));
         group.setArguments(bundle);
         expense.setArguments(bundle);
+        report.setArguments(bundle);
 
         viewPagerAdapter.addFragment(expense, "Expense");
         viewPagerAdapter.addFragment(group, "Group");
-        viewPagerAdapter.addFragment(expense2, "Expense2");
+        viewPagerAdapter.addFragment(report, "Report");
         viewPager.setAdapter(viewPagerAdapter);
     }
 }

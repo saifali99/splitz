@@ -25,17 +25,19 @@ import java.util.List;
 public class Expense extends Fragment {
 
     private static final int REQUEST_CODE_GET_EXPENSE = 1;
-    private List<String> value;
-    private List<String> label;
+    private List<String> valueList;
+    private List<String> labelList;
+    private List<String> categoryList;
     private ExpenseListView expenseListView;
-
-    public Expense() {
-        value = new ArrayList<>();
-        label = new ArrayList<>();
-    }
 
     public DatabaseHelper dbhelper;
     public SQLiteDatabase db;
+
+    public Expense() {
+        valueList = new ArrayList<>();
+        labelList = new ArrayList<>();
+        categoryList = new ArrayList<>();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,13 +58,19 @@ public class Expense extends Fragment {
             }
         });
 
-        Cursor res = db.rawQuery("SELECT e.* FROM expenses e WHERE e.uid = ?", new String[]{ getArguments().getString("userId")});
-        for (res.moveToFirst(); !res.isAfterLast(); res.moveToNext()) {
-            this.value.add(res.getString(3));
-            this.label.add(res.getString(2));
+        labelList.clear();
+        valueList.clear();
+        categoryList.clear();
+
+        Cursor cursor = db.rawQuery("SELECT e.amount, e.label, e.category FROM expenses e WHERE e.uid = ?", new String[]{ getArguments().getString("userId")});
+        while (cursor.moveToNext()) {
+            this.valueList.add(cursor.getString(0));
+            this.labelList.add(cursor.getString(1));
+            this.categoryList.add(cursor.getString(2));
         }
+
         ListView listView = view.findViewById(R.id.lvlistview1);
-        expenseListView = new ExpenseListView(getActivity(), value, label);
+        expenseListView = new ExpenseListView(getActivity(), valueList, labelList, categoryList);
         listView.setAdapter(expenseListView);
 
         return view;
@@ -71,13 +79,16 @@ public class Expense extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (REQUEST_CODE_GET_EXPENSE == requestCode && data != null) {
-            String value, label, description;
+            String value, label, description, category;
 
             value = data.getStringExtra("value");
             label = data.getStringExtra("label");
-            description = data.getStringExtra("description");
-            this.value.add(value);
-            this.label.add(label);
+            category = data.getStringExtra("category");
+//            description = data.getStringExtra("description");
+
+            this.valueList.add(value);
+            this.labelList.add(label);
+            this.categoryList.add(category);
 
             expenseListView.notifyDataSetChanged();
         }

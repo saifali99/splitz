@@ -22,10 +22,7 @@ import java.util.List;
 
 public class AddGroup extends AppCompatActivity {
 
-    private Button btnConfirm;
-    private Button btnCancel;
     private EditText etGroupName;
-    private Button btnAddusers;
     private EditText etPersonname;
 
     private List<String> personName;
@@ -39,16 +36,12 @@ public class AddGroup extends AppCompatActivity {
         personName = new ArrayList<>();
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_group);
 
         etGroupName = findViewById(R.id.etGroupName);
-        btnAddusers = findViewById(R.id.btnAddUsers);
-        btnConfirm = findViewById(R.id.btnConfirmGroup);
-        btnCancel = findViewById(R.id.btnCloseGroup);
         etPersonname = findViewById(R.id.etpersonname);
 
         ListView listView = findViewById(R.id.lvlistview3);
