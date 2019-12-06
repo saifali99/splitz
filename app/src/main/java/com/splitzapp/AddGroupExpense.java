@@ -68,25 +68,19 @@ public class AddGroupExpense extends AppCompatActivity {
     }
 
     public void btnConfirmGroupExpense(View view) {
-        // Query is not working
-        // (Caused by: android.database.sqlite.SQLiteException: no such table: groupExpense)
-        // Need to look at it
-        // Need to add label in group expense
-        // No table for saving expenses paid by each user
+        float totalAmount = Float.parseFloat(amount.getText().toString())/(float)involvedUser.size();
         db.execSQL("INSERT INTO groupExpense(gid, expenseLabel) values (?, ?)",
                 new String[]{groupId, label.getText().toString()} );
-        Cursor res0 = db.rawQuery("SELECT * FROM groups", new String[]{});
+        Cursor res0 = db.rawQuery("SELECT * FROM groupExpense", new String[]{});
         res0.moveToLast();
         for (int i = 0; i < involvedUser.size(); i++) {
+            float tamount = Float.parseFloat(involvedUserAmount.get(i))-totalAmount;
             Cursor res1 = db.rawQuery("Select * from users where username = ?", new String[]{involvedUser.get(i)});
             res1.moveToFirst();
+            db.execSQL("UPDATE groupUsers SET balance = balance + ?", new String[]{String.valueOf(tamount)});
             db.execSQL("INSERT INTO groupUserExpense(eid, gid, uid, amount) values (?, ?, ?, ?)", new String[]{res0.getString(0), groupId, res1.getString(0), involvedUserAmount.get(i)});
         }
-
-        /*Intent i = new Intent();
-        i.putExtra("label", label.getText().toString());
-        i.putExtra("amount", amount.getText().toString());
-        setResult(RESULT_OK, i);*/
+        setResult(RESULT_OK, getIntent());
         finish();
     }
 

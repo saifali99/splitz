@@ -1,23 +1,19 @@
 package com.splitzapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.splitzapp.activity.DatabaseHelper;
 import com.splitzapp.listview.UserListView;
-import com.splitzapp.tab.Group;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class AddGroup extends AppCompatActivity {
@@ -75,7 +71,7 @@ public class AddGroup extends AppCompatActivity {
             Cursor res = db.rawQuery("SELECT * FROM USERS WHERE username = ?", new String[]{personName.get(i)});
             if(!res.isAfterLast() ) {
                 res.moveToFirst();
-                db.execSQL("INSERT INTO groupUsers VALUES (?, ?)", new String[]{res0.getString(0), res.getString(0)});
+                db.execSQL("INSERT INTO groupUsers VALUES (?, ?, ?)", new String[]{res0.getString(0), res.getString(0), "0"});
             }
         }
         Intent intent = new Intent();

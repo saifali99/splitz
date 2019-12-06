@@ -17,15 +17,13 @@ import java.util.List;
 public class GroupReportListView extends ArrayAdapter<String> {
     private List<String> username;
     private List<String> balance;
-    private List<String> outstanding;
     private Context context;
 
-    public GroupReportListView(Context context, List<String>user, List<String>positive, List<String>negative) {
+    public GroupReportListView(Context context, List<String>user, List<String>bal) {
         super(context, R.layout.groupreportlistview_layout, user);
         this.context = context;
         this.username = user;
-        this.balance = positive;
-        this.outstanding = negative;
+        this.balance = bal;
     }
 
     @NonNull
@@ -39,7 +37,6 @@ public class GroupReportListView extends ArrayAdapter<String> {
 
         viewHolder.tv1.setText(username.get(position));
         viewHolder.tv1.setText(balance.get(position));
-        viewHolder.tv1.setText(outstanding.get(position));
 
         return view;
     }
@@ -47,12 +44,10 @@ public class GroupReportListView extends ArrayAdapter<String> {
     class ViewHolder {
         TextView tv1;
         TextView tv2;
-        TextView tv3;
 
         ViewHolder(View v) {
             tv1 = v.findViewById(R.id.tvUsername);
             tv2 = v.findViewById(R.id.tvPositive);
-            tv3 = v.findViewById(R.id.tvNegative);
         }
     }
 }

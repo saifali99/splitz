@@ -5,10 +5,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +12,15 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import androidx.fragment.app.Fragment;
+
 import com.splitzapp.AddGroup;
 import com.splitzapp.GroupInfo;
+import com.splitzapp.R;
 import com.splitzapp.activity.DatabaseHelper;
 import com.splitzapp.listview.GroupListView;
-import com.splitzapp.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Group extends Fragment {
@@ -80,6 +77,8 @@ public class Group extends Fragment {
                 startActivity(intent);
             }
         });
+
+
 
         return view;
     }

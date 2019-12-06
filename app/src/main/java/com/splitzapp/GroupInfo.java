@@ -1,6 +1,7 @@
 package com.splitzapp;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -46,41 +47,58 @@ public class GroupInfo extends AppCompatActivity {
         groupId = getIntent().getStringExtra("groupId");
         tvGroupName.setText(groupName);
 
+        label.clear();
+        amount.clear();
+
+        Cursor res = db.rawQuery("SELECT * from groupExpense WHERE gid = ?", new String[]{groupId});
+        for (res.moveToFirst(); !res.isAfterLast(); res.moveToNext()) {
+            label.add(res.getString(2));
+            Cursor tmp = db.rawQuery("Select sum(amount) from groupUserExpense WHERE eid = ?", new String[]{res.getString(0)});
+            tmp.moveToFirst();
+            System.out.println("Here"+tmp.getString(0));
+            amount.add(tmp.getString(0));
+        }
+
         ListView listView = findViewById(R.id.lvGroupExpense);
         groupExpenseListView = new GroupExpenseListView(this, label, amount);
         listView.setAdapter(groupExpenseListView);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (REQUEST_CODE_GET_EXPENSE == requestCode && data != null) {
+            label.clear();
+            amount.clear();
+
+            Cursor res = db.rawQuery("SELECT * from groupExpense WHERE gid = ?", new String[]{groupId});
+            for (res.moveToFirst(); !res.isAfterLast(); res.moveToNext()) {
+                label.add(res.getString(2));
+                Cursor tmp = db.rawQuery("Select sum(amount) from groupUserExpense WHERE eid = ?", new String[]{res.getString(0)});
+                tmp.moveToFirst();
+                amount.add(tmp.getString(0));
+            }
+
+            ListView listView = findViewById(R.id.lvGroupExpense);
+            groupExpenseListView = new GroupExpenseListView(this, label, amount);
+            listView.setAdapter(groupExpenseListView);
+        }
+        else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+
     }
 
     public void btnAddGroupExpense(View view) {
         Intent i = new Intent(getApplicationContext(), AddGroupExpense.class);
         i.putExtra("groupName", groupName);
         i.putExtra("groupId", groupId);
-        startActivity(i);
+        startActivityForResult(i, REQUEST_CODE_GET_EXPENSE);
     }
-    public void BtnGenerateReport(View view) {
-        Intent i = new Intent(getApplicationContext(), GroupReport.class);
-        i.putExtra("groupName", groupName);
-        i.putExtra("groupId", groupId);
-        startActivity(i);
-    }
-
- /*   public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if (REQUEST_CODE_GET_EXPENSE == requestCode && data != null) {
-            String label, amount;
-
-            label = data.getStringExtra("label");
-            amount = data.getStringExtra("amount");
-//            description = data.getStringExtra("description");
-
-            this.label.add(label);
-            this.amount.add(amount);
-
-            expenseListView.notifyDataSetChanged();
-        }
-        else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-    }*/
-
+//    public void BtnGenerateReport(View view) {
+//        Intent i = new Intent(getApplicationContext(), GroupReport.class);
+//        i.putExtra("groupName", groupName);
+//        i.putExtra("groupId", groupId);
+//        startActivity(i);
+//    }
 }

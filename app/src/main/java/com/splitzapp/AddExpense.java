@@ -85,7 +85,9 @@ public class AddExpense extends AppCompatActivity implements AdapterView.OnItemS
                             label.getText().toString(),
                             description.getText().toString(),
                             spinner.getSelectedItem().toString()});
-            eId = db.rawQuery("Select eid from expenses", new String[]{}).getString(0);
+            Cursor tmp = db.rawQuery("Select eid from expenses", new String[]{});
+            tmp.moveToFirst();
+            eId = tmp.getString(0);
         }
         else if(mode.equals("EDIT")) {
             i.putExtra("position", getIntent().getStringExtra("position"));

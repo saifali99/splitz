@@ -106,7 +106,6 @@ public class Expense extends Fragment {
             value = data.getStringExtra("value");
             label = data.getStringExtra("label");
             category = data.getStringExtra("category");
-//            description = data.getStringExtra("description");
 
             if(mode.equals("ADD")) {
                 this.idList.add(id);

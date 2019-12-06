@@ -1,12 +1,11 @@
 package com.splitzapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.splitzapp.listview.GroupReportListView;
 
@@ -18,14 +17,12 @@ public class GroupReport extends AppCompatActivity {
     String groupName;
     String groupId;
     List<String> username;
-    List<String> positive;
-    List<String> negative;
+    List<String> balance;
     GroupReportListView groupReportListView;
 
     public GroupReport() {
         username = new ArrayList<>();
-        positive = new ArrayList<>();
-        negative = new ArrayList<>();
+        balance = new ArrayList<>();
     }
 
     @Override
@@ -39,8 +36,11 @@ public class GroupReport extends AppCompatActivity {
 
         tvGroupName.setText(groupName);
 
+        username.add("User1");
+        balance.add("20");
+
         ListView listView = findViewById(R.id.lvlistview6);
-        groupReportListView = new GroupReportListView(this, username, positive, negative);
+        groupReportListView = new GroupReportListView(this, username, balance);
         listView.setAdapter(groupReportListView);
     }
 
